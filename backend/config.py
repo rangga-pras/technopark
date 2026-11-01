@@ -34,6 +34,19 @@ def database_url():
         raise RuntimeError('TechnoPark membutuhkan MySQL melalui PyMySQL.')
     return url
 
+def database_connect_args():
+    args = {'connect_timeout': 5}
+    ssl_required = os.getenv('MYSQL_SSL_REQUIRED', '').strip().lower() in {'1', 'true', 'yes', 'on'}
+    ssl_ca = os.getenv('MYSQL_SSL_CA', '').strip()
+    if ssl_required and not ssl_ca:
+        raise RuntimeError('MYSQL_SSL_CA wajib diisi ketika MYSQL_SSL_REQUIRED aktif.')
+    if ssl_ca:
+        ca_path = Path(ssl_ca)
+        if not ca_path.is_file():
+            raise RuntimeError(f'CA database tidak ditemukan: {ca_path}')
+        args.update(ssl_ca=str(ca_path), ssl_verify_cert=True, ssl_verify_identity=True)
+    return args
+
 # Isi sesudah operator mengaudit SELURUH hari libur nasional tahun tersebut.
 # Format {"2026":"https://sumber-resmi..."}; tidak ada tahun yang diasumsikan valid.
 HOLIDAY_CALENDARS = json.loads(os.getenv('HOLIDAY_CALENDARS', '{}'))
