@@ -1,0 +1,29 @@
+# JavaScript / Vue
+**/node_modules/
+**/dist/
+**/.vite/
+
+# Python
+**/venv/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/*.py[cod]
+**/.coverage
+
+# Local secrets and environment
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+!**/.env.test.example
+
+# Local IDE, OS, logs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+

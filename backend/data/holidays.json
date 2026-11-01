@@ -1,0 +1,28 @@
+{
+  "verified_on": "2026-11-01",
+  "years": {
+    "2026": {
+      "source": "https://kemenkopmk.go.id/pemerintah-tetapkan-17-hari-libur-nasional-dan-8-hari-cuti-bersama-tahun-2026",
+      "holidays": {
+        "2026-01-01": "Tahun Baru Masehi", "2026-01-16": "Isra Mikraj", "2026-02-17": "Tahun Baru Imlek",
+        "2026-03-19": "Nyepi", "2026-03-21": "Idul Fitri", "2026-03-22": "Idul Fitri",
+        "2026-04-03": "Wafat Yesus Kristus", "2026-04-05": "Paskah", "2026-05-01": "Hari Buruh",
+        "2026-05-14": "Kenaikan Yesus Kristus", "2026-05-27": "Idul Adha", "2026-05-31": "Waisak",
+        "2026-06-01": "Hari Lahir Pancasila", "2026-06-16": "Tahun Baru Islam", "2026-08-17": "Kemerdekaan RI",
+        "2026-08-25": "Maulid Nabi Muhammad", "2026-12-25": "Natal"
+      }
+    },
+    "2027": {
+      "source": "https://www.kemenkopmk.go.id/node/6444",
+      "cross_check": "https://setneg.go.id/baca/index/inilah_skb_3_menteri_libur_nasional_dan_cuti_bersama_2027",
+      "holidays": {
+        "2027-01-01": "Tahun Baru Masehi", "2027-01-05": "Isra Mikraj", "2027-02-06": "Tahun Baru Imlek",
+        "2027-03-08": "Nyepi", "2027-03-10": "Idul Fitri", "2027-03-11": "Idul Fitri",
+        "2027-03-26": "Wafat Yesus Kristus", "2027-03-28": "Paskah", "2027-05-01": "Hari Buruh",
+        "2027-05-06": "Kenaikan Yesus Kristus", "2027-05-17": "Idul Adha", "2027-05-20": "Waisak",
+        "2027-06-01": "Hari Lahir Pancasila", "2027-06-06": "Tahun Baru Islam", "2027-08-15": "Maulid Nabi Muhammad",
+        "2027-08-17": "Kemerdekaan RI", "2027-12-25": "Natal", "2027-12-26": "Isra Mikraj"
+      }
+    }
+  }
+}
