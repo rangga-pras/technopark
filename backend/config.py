@@ -1,5 +1,6 @@
 import json
 import os
+import ssl
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -38,13 +39,25 @@ def database_connect_args():
     args = {'connect_timeout': 5}
     ssl_required = os.getenv('MYSQL_SSL_REQUIRED', '').strip().lower() in {'1', 'true', 'yes', 'on'}
     ssl_ca = os.getenv('MYSQL_SSL_CA', '').strip()
-    if ssl_required and not ssl_ca:
-        raise RuntimeError('MYSQL_SSL_CA wajib diisi ketika MYSQL_SSL_REQUIRED aktif.')
+    ssl_ca_pem = os.getenv('MYSQL_SSL_CA_PEM', '').strip()
+    if ssl_ca and ssl_ca_pem:
+        raise RuntimeError('Pilih MYSQL_SSL_CA atau MYSQL_SSL_CA_PEM, jangan keduanya.')
+    if ssl_required and not (ssl_ca or ssl_ca_pem):
+        raise RuntimeError('CA database wajib diisi ketika MYSQL_SSL_REQUIRED aktif.')
     if ssl_ca:
         ca_path = Path(ssl_ca)
         if not ca_path.is_file():
             raise RuntimeError(f'CA database tidak ditemukan: {ca_path}')
         args.update(ssl_ca=str(ca_path), ssl_verify_cert=True, ssl_verify_identity=True)
+    elif ssl_ca_pem:
+        ssl_context = ssl.create_default_context()
+        try:
+            ssl_context.load_verify_locations(cadata=ssl_ca_pem)
+        except ssl.SSLError as exc:
+            raise RuntimeError('MYSQL_SSL_CA_PEM bukan certificate PEM yang valid.') from exc
+        ssl_context.check_hostname = True
+        ssl_context.verify_mode = ssl.CERT_REQUIRED
+        args['ssl'] = ssl_context
     return args
 
 # Isi sesudah operator mengaudit SELURUH hari libur nasional tahun tersebut.
